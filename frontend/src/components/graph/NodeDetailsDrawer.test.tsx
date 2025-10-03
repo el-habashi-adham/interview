@@ -91,4 +91,31 @@ describe('NodeDetailsDrawer', () => {
     await userEvent.click(screen.getByRole('dialog'));
     expect(onClose).toHaveBeenCalledTimes(2);
   });
+
+  it('renders a RoboHash avatar for person nodes by default', () => {
+    const node = makeNode({ type: 'person', id: 'p-123', label: 'Jane Doe', meta: {} });
+    render(<NodeDetailsDrawer node={node} onClose={() => {}} />);
+
+    const img = screen.getByAltText(/avatar for jane doe/i) as HTMLImageElement;
+    expect(img).toBeInTheDocument();
+    expect(img.src).toContain('robohash.org');
+    expect(img.src).toContain(encodeURIComponent('p-123'));
+  });
+
+  it('uses meta.avatarUrl when provided for person nodes', () => {
+    const custom = 'https://robohash.org/custom-seed.png?size=96x96';
+    const node = makeNode({ type: 'person', label: 'John', meta: { avatarUrl: custom } });
+
+    render(<NodeDetailsDrawer node={node} onClose={() => {}} />);
+    const img = screen.getByAltText(/avatar for john/i) as HTMLImageElement;
+    expect(img).toHaveAttribute('src', custom);
+  });
+  it('renders provided avatarUrl for person nodes (demo-level check)', () => {
+    const custom = 'https://robohash.org/custom-seed.png?size=96x96';
+    const node = makeNode({ type: 'person', label: 'John', meta: { avatarUrl: custom } });
+
+    render(<NodeDetailsDrawer node={node} onClose={() => {}} />);
+    const img = screen.getByAltText(/avatar for john/i) as HTMLImageElement;
+    expect(img).toHaveAttribute('src', custom);
+  });
 });
