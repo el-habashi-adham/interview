@@ -1,0 +1,586 @@
+[
+  {
+    "id": "Q001",
+    "question": "How do we deploy to staging?",
+    "answer": "Push to the main branch triggers the staging deploy via GitHub Actions. Ensure the Docker image builds successfully, then the workflow updates the staging ECS service. Use the CI summary to verify task health and run `npm run db:migrate` if schema changes are included.",
+    "confidence": 0.93,
+    "citations": [
+      {
+        "source": "GitHub",
+        "title": "Deploy pipeline - .github/workflows/deploy.yml",
+        "url": "https://github.com/org/repo/actions/workflows/deploy.yml",
+        "date": "2025-08-17T10:03:22Z",
+        "repo": "org/repo"
+      },
+      {
+        "source": "Confluence",
+        "title": "Staging Deploy Runbook",
+        "url": "https://confluence.example.com/display/ENG/Staging+Deploy+Runbook",
+        "date": "2025-07-05T08:12:00Z",
+        "pageId": "STAGING-RUNBOOK"
+      }
+    ],
+    "related": [
+      "How do we rollback a deployment?",
+      "How do we run database migrations?"
+    ],
+    "date": "2025-08-17T10:05:00Z",
+    "topics": ["deployment", "CI/CD", "AWS"],
+    "sourceTypes": ["GitHub", "Confluence"]
+  },
+  {
+    "id": "Q002",
+    "question": "How do I request a production database backup?",
+    "answer": "Open a ticket in the Ops queue with the service name and retention window. Backups are automated daily via RDS snapshots, but ad-hoc snapshots can be taken by the on-call SRE.",
+    "confidence": 0.88,
+    "citations": [
+      {
+        "source": "Confluence",
+        "title": "RDS Backups Policy",
+        "url": "https://confluence.example.com/display/OPS/RDS+Backups+Policy",
+        "date": "2025-06-22T12:40:00Z",
+        "pageId": "RDS-BACKUPS"
+      },
+      {
+        "source": "Slack",
+        "title": "#ops - backups faq thread",
+        "url": "https://slack.com/app_redirect?channel=ops&message=abc123",
+        "date": "2025-09-14T14:21:43Z",
+        "channel": "#ops",
+        "authorId": "P008"
+      }
+    ],
+    "related": [
+      "How do we handle PII data?",
+      "How do we run database migrations?"
+    ],
+    "date": "2025-09-14T14:25:00Z",
+    "topics": ["database", "security", "process"],
+    "sourceTypes": ["Confluence", "Slack"]
+  },
+  {
+    "id": "Q003",
+    "question": "What is our branching strategy?",
+    "answer": "We use trunk-based development: short-lived feature branches merged to main via squash merge and mandatory PR review. Release tags derive from main.",
+    "confidence": 0.9,
+    "citations": [
+      {
+        "source": "Notion",
+        "title": "Engineering Handbook - Git Workflow",
+        "url": "https://notion.so/handbook/git-workflow",
+        "date": "2025-05-09T09:10:00Z",
+        "pageId": "git-workflow"
+      }
+    ],
+    "related": [
+      "How do we tag a release?",
+      "How do we rollback a deployment?"
+    ],
+    "date": "2025-05-09T09:12:00Z",
+    "topics": ["process", "CI/CD"],
+    "sourceTypes": ["Notion"]
+  },
+  {
+    "id": "Q004",
+    "question": "How do I run tests locally?",
+    "answer": "Use `npm test` for unit tests and `npm run test:e2e` for end-to-end tests. Ensure Docker is running for services and set `NODE_ENV=test`.",
+    "confidence": 0.86,
+    "citations": [
+      {
+        "source": "GitHub",
+        "title": "README - Testing",
+        "url": "https://github.com/org/repo/blob/main/README.md#testing",
+        "date": "2025-07-29T07:05:00Z",
+        "repo": "org/repo"
+      }
+    ],
+    "related": [
+      "How do we deploy to staging?",
+      "How do we set up a dev container?"
+    ],
+    "date": "2025-07-29T07:06:00Z",
+    "topics": ["process", "CI/CD", "DevOps"],
+    "sourceTypes": ["GitHub"]
+  },
+  {
+    "id": "Q005",
+    "question": "How do we access staging logs?",
+    "answer": "Use CloudWatch Logs Insights for the staging log group. Query by service name and time range. Link to the saved queries is in the runbook.",
+    "confidence": 0.84,
+    "citations": [
+      {
+        "source": "Confluence",
+        "title": "Observability - Logs",
+        "url": "https://confluence.example.com/display/OBS/Logs",
+        "date": "2025-06-03T10:30:00Z",
+        "pageId": "OBS-LOGS"
+      }
+    ],
+    "related": [
+      "How do we add monitoring alerts?",
+      "How do we deploy to staging?"
+    ],
+    "date": "2025-08-03T10:44:00Z",
+    "topics": ["observability", "AWS"],
+    "sourceTypes": ["Confluence"]
+  },
+  {
+    "id": "Q006",
+    "question": "How do I add a new environment variable?",
+    "answer": "Define it in the service config (dotenv for local, GitHub Actions secret for CI, and SSM Parameter Store for staging/prod). Never commit secrets.",
+    "confidence": 0.89,
+    "citations": [
+      {
+        "source": "Notion",
+        "title": "Secrets and Config Management",
+        "url": "https://notion.so/handbook/secrets-config",
+        "date": "2025-07-01T13:20:00Z",
+        "pageId": "secrets-config"
+      }
+    ],
+    "related": [
+      "How do we deploy to staging?",
+      "How do we handle PII data?"
+    ],
+    "date": "2025-07-01T13:25:00Z",
+    "topics": ["security", "DevOps"],
+    "sourceTypes": ["Notion"]
+  },
+  {
+    "id": "Q007",
+    "question": "How do I create release notes in Notion?",
+    "answer": "Duplicate the 'Release Notes' template in Notion, update version/tag, and list user-facing changes. Link the PRs and assign the owner.",
+    "confidence": 0.8,
+    "citations": [
+      {
+        "source": "Notion",
+        "title": "Release Notes Template",
+        "url": "https://notion.so/release-notes-template",
+        "date": "2025-08-10T15:00:00Z",
+        "pageId": "rel-notes-template",
+        "authorId": "P005"
+      }
+    ],
+    "related": [
+      "How do we tag a release?",
+      "What is our branching strategy?"
+    ],
+    "date": "2025-08-10T15:03:00Z",
+    "topics": ["process"],
+    "sourceTypes": ["Notion"]
+  },
+  {
+    "id": "Q008",
+    "question": "How do I report a security vulnerability?",
+    "answer": "Use the private 'security-report' GitHub issue template. For high severity, page the on-call via PagerDuty and notify #security.",
+    "confidence": 0.82,
+    "citations": [
+      {
+        "source": "GitHub",
+        "title": "SECURITY.md",
+        "url": "https://github.com/org/repo/blob/main/SECURITY.md",
+        "date": "2025-06-19T11:25:00Z",
+        "repo": "org/repo"
+      },
+      {
+        "source": "Slack",
+        "title": "#security channel guide",
+        "url": "https://slack.com/app_redirect?channel=security",
+        "date": "2025-08-22T16:40:00Z",
+        "channel": "#security",
+        "authorId": "P012"
+      }
+    ],
+    "related": [
+      "How do we handle PII data?",
+      "How do we add monitoring alerts?"
+    ],
+    "date": "2025-08-22T16:42:00Z",
+    "topics": ["security", "process"],
+    "sourceTypes": ["GitHub", "Slack"]
+  },
+  {
+    "id": "Q009",
+    "question": "How do I configure AWS credentials locally?",
+    "answer": "Use SSO with the AWS CLI: `aws configure sso`. Select the org account and role. Profiles are named `org-dev` and `org-staging`.",
+    "confidence": 0.87,
+    "citations": [
+      {
+        "source": "Confluence",
+        "title": "AWS SSO Setup",
+        "url": "https://confluence.example.com/display/OPS/AWS+SSO+Setup",
+        "date": "2025-04-14T08:00:00Z",
+        "pageId": "AWS-SSO"
+      }
+    ],
+    "related": [
+      "How do we access staging logs?",
+      "How do I add a new environment variable?"
+    ],
+    "date": "2025-07-14T08:30:00Z",
+    "topics": ["AWS", "DevOps"],
+    "sourceTypes": ["Confluence"]
+  },
+  {
+    "id": "Q010",
+    "question": "What is the onboarding checklist for new engineers?",
+    "answer": "Follow the Notion onboarding checklist: accounts, dev environment, architecture overview, and first issue pairing. Manager signs off within week one.",
+    "confidence": 0.91,
+    "citations": [
+      {
+        "source": "Notion",
+        "title": "Engineering Onboarding Checklist",
+        "url": "https://notion.so/people/engineering-onboarding",
+        "date": "2025-05-01T09:00:00Z",
+        "pageId": "eng-onboarding",
+        "authorId": "P009"
+      }
+    ],
+    "related": [
+      "How do we set up a dev container?",
+      "How do I request access to the GitHub org?"
+    ],
+    "date": "2025-05-01T09:05:00Z",
+    "topics": ["onboarding", "process"],
+    "sourceTypes": ["Notion"]
+  },
+  {
+    "id": "Q011",
+    "question": "How can I manually trigger a CI workflow?",
+    "answer": "Use the 'Run workflow' button in GitHub Actions on the desired workflow. Provide branch and optional inputs as required.",
+    "confidence": 0.83,
+    "citations": [
+      {
+        "source": "GitHub",
+        "title": "Actions - Manual Dispatch",
+        "url": "https://github.com/org/repo/actions",
+        "date": "2025-06-11T10:10:00Z",
+        "repo": "org/repo"
+      }
+    ],
+    "related": [
+      "How do we deploy to staging?",
+      "What is our branching strategy?"
+    ],
+    "date": "2025-06-11T10:12:00Z",
+    "topics": ["CI/CD"],
+    "sourceTypes": ["GitHub"]
+  },
+  {
+    "id": "Q012",
+    "question": "How do I create a new feature flag?",
+    "answer": "Add a flag in the config service and gate the feature with the `useFlag` hook. For risky rollouts, use a 10% progressive rollout with kill switch.",
+    "confidence": 0.78,
+    "citations": [
+      {
+        "source": "Confluence",
+        "title": "Feature Flags Guidelines",
+        "url": "https://confluence.example.com/display/ENG/Feature+Flags",
+        "date": "2025-05-20T12:00:00Z",
+        "pageId": "FEATURE-FLAGS"
+      }
+    ],
+    "related": [
+      "How do we rollback a deployment?",
+      "How do we tag a release?"
+    ],
+    "date": "2025-08-20T12:10:00Z",
+    "topics": ["process", "React"],
+    "sourceTypes": ["Confluence"]
+  },
+  {
+    "id": "Q013",
+    "question": "How do we rollback a deployment?",
+    "answer": "Re-deploy the previous release tag using the 'Rollback' workflow. Confirm service health checks pass and monitor error rate for 15 minutes.",
+    "confidence": 0.92,
+    "citations": [
+      {
+        "source": "GitHub",
+        "title": "Rollback workflow",
+        "url": "https://github.com/org/repo/actions/workflows/rollback.yml",
+        "date": "2025-09-01T11:30:00Z",
+        "repo": "org/repo"
+      },
+      {
+        "source": "Confluence",
+        "title": "Incident Response - Rollback",
+        "url": "https://confluence.example.com/display/ENG/Incident+Response",
+        "date": "2025-07-02T15:23:00Z",
+        "pageId": "INCIDENT-RESPONSE"
+      }
+    ],
+    "related": [
+      "How do we tag a release?",
+      "How do we deploy to staging?"
+    ],
+    "date": "2025-09-01T11:35:00Z",
+    "topics": ["deployment", "CI/CD"],
+    "sourceTypes": ["GitHub", "Confluence"]
+  },
+  {
+    "id": "Q014",
+    "question": "How do we handle PII data?",
+    "answer": "PII must be encrypted at rest and in transit. Access is restricted via IAM and audited monthly. Never export PII to spreadsheets.",
+    "confidence": 0.89,
+    "citations": [
+      {
+        "source": "Confluence",
+        "title": "Data Handling Policy",
+        "url": "https://confluence.example.com/display/SEC/Data+Handling+Policy",
+        "date": "2025-04-28T09:00:00Z",
+        "pageId": "DATA-POLICY"
+      }
+    ],
+    "related": [
+      "How do I request a production database backup?",
+      "How do I report a security vulnerability?"
+    ],
+    "date": "2025-07-28T09:02:00Z",
+    "topics": ["security", "database"],
+    "sourceTypes": ["Confluence"]
+  },
+  {
+    "id": "Q015",
+    "question": "How do we run database migrations?",
+    "answer": "Migrations run automatically during deployment via `npm run db:migrate`. Locally, run the same command with Docker services up.",
+    "confidence": 0.85,
+    "citations": [
+      {
+        "source": "GitHub",
+        "title": "Migrations README",
+        "url": "https://github.com/org/repo/blob/main/db/README.md",
+        "date": "2025-05-18T08:40:00Z",
+        "repo": "org/repo"
+      }
+    ],
+    "related": [
+      "How do we deploy to staging?",
+      "How do we rollback a deployment?"
+    ],
+    "date": "2025-05-18T08:42:00Z",
+    "topics": ["database", "deployment"],
+    "sourceTypes": ["GitHub"]
+  },
+  {
+    "id": "Q016",
+    "question": "How do I request access to the GitHub organization?",
+    "answer": "Ask your manager to submit an access request. Security adds you to the org and required teams within 24 hours.",
+    "confidence": 0.77,
+    "citations": [
+      {
+        "source": "Notion",
+        "title": "Access Management",
+        "url": "https://notion.so/people/access-management",
+        "date": "2025-06-03T10:00:00Z",
+        "pageId": "access-mgmt",
+        "authorId": "P009"
+      }
+    ],
+    "related": [
+      "What is the onboarding checklist for new engineers?",
+      "How do I configure AWS credentials locally?"
+    ],
+    "date": "2025-06-03T10:05:00Z",
+    "topics": ["onboarding", "process"],
+    "sourceTypes": ["Notion"]
+  },
+  {
+    "id": "Q017",
+    "question": "What is our incident severity policy?",
+    "answer": "We classify incidents as SEV1–SEV4. SEV1 pages 24/7, SEV2 business hours + on-call, SEV3 tracked via ticket, SEV4 informational.",
+    "confidence": 0.9,
+    "citations": [
+      {
+        "source": "Confluence",
+        "title": "Incident Management Policy",
+        "url": "https://confluence.example.com/display/ENG/Incident+Management+Policy",
+        "date": "2025-05-26T12:00:00Z",
+        "pageId": "INCIDENT-POLICY"
+      }
+    ],
+    "related": [
+      "How do we rollback a deployment?",
+      "How do we add monitoring alerts?"
+    ],
+    "date": "2025-08-26T12:03:00Z",
+    "topics": ["process", "observability"],
+    "sourceTypes": ["Confluence"]
+  },
+  {
+    "id": "Q018",
+    "question": "How do we publish an internal NPM package?",
+    "answer": "Bump the version, run `npm publish` with the internal registry set in `.npmrc`. CI also publishes on tags for the packages/* workspace.",
+    "confidence": 0.75,
+    "citations": [
+      {
+        "source": "GitHub",
+        "title": "Publishing guide",
+        "url": "https://github.com/org/repo/blob/main/docs/publishing.md",
+        "date": "2025-07-07T14:00:00Z",
+        "repo": "org/repo"
+      }
+    ],
+    "related": [
+      "How do we tag a release?",
+      "What is our branching strategy?"
+    ],
+    "date": "2025-07-07T14:05:00Z",
+    "topics": ["process", "TypeScript"],
+    "sourceTypes": ["GitHub"]
+  },
+  {
+    "id": "Q019",
+    "question": "How do I connect to the company VPN?",
+    "answer": "Install the VPN client from the IT portal, import the configuration, and authenticate with SSO + MFA. Contact IT if you see TLS errors.",
+    "confidence": 0.83,
+    "citations": [
+      {
+        "source": "Notion",
+        "title": "IT - VPN Setup",
+        "url": "https://notion.so/it/vpn-setup",
+        "date": "2025-05-11T10:00:00Z",
+        "pageId": "vpn-setup"
+      }
+    ],
+    "related": [
+      "How do I configure AWS credentials locally?",
+      "What is the onboarding checklist for new engineers?"
+    ],
+    "date": "2025-09-11T10:10:00Z",
+    "topics": ["onboarding", "security"],
+    "sourceTypes": ["Notion"]
+  },
+  {
+    "id": "Q020",
+    "question": "How do we update React to a new major version?",
+    "answer": "Use `npm run update:react` script to bump React and React DOM, then run codemods where applicable. Validate with e2e tests and canary release.",
+    "confidence": 0.7,
+    "citations": [
+      {
+        "source": "GitHub",
+        "title": "Frontend Upgrade Playbook",
+        "url": "https://github.com/org/repo/blob/main/docs/frontend-upgrades.md",
+        "date": "2025-08-02T12:00:00Z",
+        "repo": "org/repo"
+      }
+    ],
+    "related": [
+      "How do I run tests locally?",
+      "How do we tag a release?"
+    ],
+    "date": "2025-08-02T12:04:00Z",
+    "topics": ["React", "process"],
+    "sourceTypes": ["GitHub"]
+  },
+  {
+    "id": "Q021",
+    "question": "How do I add a new microservice?",
+    "answer": "Use the service template via `npm run scaffold:service`, register with the gateway, and provision infrastructure via Terraform module.",
+    "confidence": 0.82,
+    "citations": [
+      {
+        "source": "Confluence",
+        "title": "Service Template",
+        "url": "https://confluence.example.com/display/ENG/Service+Template",
+        "date": "2025-06-15T09:00:00Z",
+        "pageId": "SERVICE-TEMPLATE"
+      }
+    ],
+    "related": [
+      "How do we add monitoring alerts?",
+      "How do we deploy to staging?"
+    ],
+    "date": "2025-09-15T09:05:00Z",
+    "topics": ["infrastructure", "deployment"],
+    "sourceTypes": ["Confluence"]
+  },
+  {
+    "id": "Q022",
+    "question": "How do we tag a release?",
+    "answer": "Create an annotated tag `vX.Y.Z` on main and push. The release workflow builds artifacts and publishes. Update release notes in Notion.",
+    "confidence": 0.9,
+    "citations": [
+      {
+        "source": "GitHub",
+        "title": "Release workflow",
+        "url": "https://github.com/org/repo/actions/workflows/release.yml",
+        "date": "2025-07-20T10:00:00Z",
+        "repo": "org/repo"
+      }
+    ],
+    "related": [
+      "What is our branching strategy?",
+      "How do we publish an internal NPM package?"
+    ],
+    "date": "2025-07-20T10:02:00Z",
+    "topics": ["CI/CD", "process"],
+    "sourceTypes": ["GitHub"]
+  },
+  {
+    "id": "Q023",
+    "question": "How do we add monitoring alerts?",
+    "answer": "Define alerts in Terraform under `monitoring/alerts`. Use SLO-based thresholds. Alerts notify #oncall and create PagerDuty incidents as needed.",
+    "confidence": 0.88,
+    "citations": [
+      {
+        "source": "GitHub",
+        "title": "Monitoring module",
+        "url": "https://github.com/org/repo/tree/main/infra/monitoring",
+        "date": "2025-06-30T08:00:00Z",
+        "repo": "org/repo"
+      }
+    ],
+    "related": [
+      "What is our incident severity policy?",
+      "How do we access staging logs?"
+    ],
+    "date": "2025-08-30T08:05:00Z",
+    "topics": ["observability", "AWS"],
+    "sourceTypes": ["GitHub"]
+  },
+  {
+    "id": "Q024",
+    "question": "How do we set up a dev container?",
+    "answer": "Open the repository in VS Code and 'Reopen in Container'. The devcontainer includes Node, Docker CLI, and common tooling preinstalled.",
+    "confidence": 0.81,
+    "citations": [
+      {
+        "source": "GitHub",
+        "title": "Dev Container Config",
+        "url": "https://github.com/org/repo/tree/main/.devcontainer",
+        "date": "2025-04-19T11:00:00Z",
+        "repo": "org/repo"
+      }
+    ],
+    "related": [
+      "How do I run tests locally?",
+      "What is the onboarding checklist for new engineers?"
+    ],
+    "date": "2025-07-19T11:05:00Z",
+    "topics": ["DevOps", "onboarding"],
+    "sourceTypes": ["GitHub"]
+  },
+  {
+    "id": "Q025",
+    "question": "How do I request paid time off (PTO)?",
+    "answer": "Submit a PTO request in the HR portal and notify your manager and squad channel. For overlapping PTO, ensure coverage is arranged.",
+    "confidence": 0.95,
+    "citations": [
+      {
+        "source": "Notion",
+        "title": "PTO Policy",
+        "url": "https://notion.so/people/pto-policy",
+        "date": "2025-06-01T09:00:00Z",
+        "pageId": "pto-policy",
+        "authorId": "P009"
+      }
+    ],
+    "related": [
+      "What is the onboarding checklist for new engineers?",
+      "How do I connect to the company VPN?"
+    ],
+    "date": "2025-06-01T09:05:00Z",
+    "topics": ["HR", "process"],
+    "sourceTypes": ["Notion"]
+  }
+]
