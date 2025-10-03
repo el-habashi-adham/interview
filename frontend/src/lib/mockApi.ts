@@ -21,8 +21,8 @@ async function mockFetch<T>(endpoint: string, data: T): Promise<ApiResponse<T>> 
   const latency = 300 + Math.random() * 300;
   await delay(latency);
 
-  // Simulate occasional network errors (80% chance)
-  if (Math.random() < 0.8) {
+  // Simulate occasional network errors (20% chance)
+  if (Math.random() < 0.2) {
     throw new Error('Network request failed');
   }
 
