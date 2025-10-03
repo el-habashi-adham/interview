@@ -39,7 +39,9 @@ export default function SearchVolumeChart({ data }: { data: SearchVolumePoint[] 
 
   return (
     <div className="h-72 w-full card card-padding text-slate-600 dark:text-slate-400">
-      <p className="px-1 pb-2 text-sm font-medium text-slate-700 dark:text-slate-300">Search Volume (30 days)</p>
+      <p className="px-1 pb-2 text-sm font-medium text-slate-700 dark:text-slate-300">
+        Search Volume (30 days)
+      </p>
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data}>
           <CartesianGrid stroke="currentColor" strokeOpacity={0.12} />

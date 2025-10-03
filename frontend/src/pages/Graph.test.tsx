@@ -53,12 +53,10 @@ describe('Graph page', () => {
   };
 
   it('shows loading state initially', () => {
-    vi.mocked(mockApi.fetchGraph).mockImplementation(
-      () => new Promise(() => {})
-    );
+    vi.mocked(mockApi.fetchGraph).mockImplementation(() => new Promise(() => {}));
 
     render(<Graph />);
-    
+
     const loadingElements = screen.getAllByRole('status');
     expect(loadingElements.length).toBeGreaterThan(0);
   });
@@ -144,9 +142,7 @@ describe('Graph page', () => {
   });
 
   it('shows error state on API failure', async () => {
-    vi.mocked(mockApi.fetchGraph).mockRejectedValue(
-      new Error('Failed to load graph')
-    );
+    vi.mocked(mockApi.fetchGraph).mockRejectedValue(new Error('Failed to load graph'));
 
     render(<Graph />);
 

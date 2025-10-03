@@ -44,7 +44,7 @@ export default function Search() {
           else p.delete('q');
           return p;
         },
-        { replace: true }
+        { replace: true },
       );
 
       // Call the API with query and filters
@@ -53,7 +53,7 @@ export default function Search() {
         startDate: f.start,
         endDate: f.end,
       });
-      
+
       if (res.error) setError(res.error);
       setResults(res.data);
     } catch (e) {
@@ -146,10 +146,13 @@ export default function Search() {
               setFilters({ source: 'All' });
               setResults(null);
               setError(undefined);
-              setParams((p) => {
-                p.delete('q');
-                return p;
-              }, { replace: true });
+              setParams(
+                (p) => {
+                  p.delete('q');
+                  return p;
+                },
+                { replace: true },
+              );
             }}
           >
             Reset
@@ -195,7 +198,9 @@ function ResultCard({
   return (
     <article className="card card-padding">
       <header className="flex items-start justify-between gap-3">
-        <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">{item.question}</h3>
+        <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">
+          {item.question}
+        </h3>
         <span
           className="shrink-0 rounded-md border border-slate-200 bg-slate-100 px-2 py-1 text-xs font-medium text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
           title="Confidence"
@@ -232,7 +237,9 @@ function ResultCard({
       {/* Related */}
       {item.related.length > 0 && (
         <div className="mt-3">
-          <p className="text-xs font-medium text-slate-500 dark:text-slate-400">Related questions</p>
+          <p className="text-xs font-medium text-slate-500 dark:text-slate-400">
+            Related questions
+          </p>
           <div className="mt-1 flex flex-wrap gap-2">
             {item.related.map((rq) => (
               <button

@@ -64,43 +64,71 @@
       "id": "doc-D001",
       "type": "document",
       "label": "Staging Deploy Runbook",
-      "meta": { "source": "Confluence", "url": "https://confluence.example.com/staging", "date": "2025-08-05T10:00:00Z" }
+      "meta": {
+        "source": "Confluence",
+        "url": "https://confluence.example.com/staging",
+        "date": "2025-08-05T10:00:00Z"
+      }
     },
     {
       "id": "doc-D003",
       "type": "document",
       "label": "Git Workflow Guide",
-      "meta": { "source": "Notion", "url": "https://notion.so/git-workflow", "date": "2025-05-09T09:10:00Z" }
+      "meta": {
+        "source": "Notion",
+        "url": "https://notion.so/git-workflow",
+        "date": "2025-05-09T09:10:00Z"
+      }
     },
     {
       "id": "doc-D012",
       "type": "document",
       "label": "Feature Flags Guidelines",
-      "meta": { "source": "Confluence", "url": "https://confluence.example.com/feature-flags", "date": "2025-05-20T12:00:00Z" }
+      "meta": {
+        "source": "Confluence",
+        "url": "https://confluence.example.com/feature-flags",
+        "date": "2025-05-20T12:00:00Z"
+      }
     },
     {
       "id": "doc-D013",
       "type": "document",
       "label": "Rollback Workflow",
-      "meta": { "source": "GitHub", "url": "https://github.com/org/repo/rollback.yml", "date": "2025-09-01T11:30:00Z" }
+      "meta": {
+        "source": "GitHub",
+        "url": "https://github.com/org/repo/rollback.yml",
+        "date": "2025-09-01T11:30:00Z"
+      }
     },
     {
       "id": "doc-D020",
       "type": "document",
       "label": "Frontend Upgrade Playbook",
-      "meta": { "source": "GitHub", "url": "https://github.com/org/repo/frontend-upgrades.md", "date": "2025-08-02T12:00:00Z" }
+      "meta": {
+        "source": "GitHub",
+        "url": "https://github.com/org/repo/frontend-upgrades.md",
+        "date": "2025-08-02T12:00:00Z"
+      }
     },
     {
       "id": "doc-D029",
       "type": "document",
       "label": "TypeScript Guidelines",
-      "meta": { "source": "Notion", "url": "https://notion.so/typescript-guidelines", "date": "2025-07-02T09:00:00Z" }
+      "meta": {
+        "source": "Notion",
+        "url": "https://notion.so/typescript-guidelines",
+        "date": "2025-07-02T09:00:00Z"
+      }
     },
     {
       "id": "doc-D030",
       "type": "document",
       "label": "React Patterns",
-      "meta": { "source": "Notion", "url": "https://notion.so/react-patterns", "date": "2025-07-15T09:00:00Z" }
+      "meta": {
+        "source": "Notion",
+        "url": "https://notion.so/react-patterns",
+        "date": "2025-07-15T09:00:00Z"
+      }
     }
   ],
   "edges": [

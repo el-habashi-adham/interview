@@ -6,17 +6,17 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3000,
-    open: true
+    open: true,
   },
   preview: {
     port: 3000,
-    open: true
+    open: true,
   },
   // Vitest configuration keeps existing React Testing Library setup working
   test: {
     environment: 'jsdom',
     globals: true,
     setupFiles: './src/setupTests.ts',
-    css: true
-  }
+    css: true,
+  },
 });

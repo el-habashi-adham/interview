@@ -16,13 +16,13 @@ export default function Dashboard() {
 
   React.useEffect(() => {
     let mounted = true;
-    
+
     async function loadData() {
       setLoading(true);
       try {
         const res = await fetchDashboard();
         if (!mounted) return;
-        
+
         if (res.error) {
           setError(res.error);
         }
@@ -35,9 +35,9 @@ export default function Dashboard() {
         if (mounted) setLoading(false);
       }
     }
-    
+
     loadData();
-    
+
     return () => {
       mounted = false;
     };
@@ -53,7 +53,9 @@ export default function Dashboard() {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-semibold dark:text-slate-100">Dashboard</h2>
-        <p className="mt-1 text-slate-600 dark:text-slate-400">Metrics and trends for the last 30 days</p>
+        <p className="mt-1 text-slate-600 dark:text-slate-400">
+          Metrics and trends for the last 30 days
+        </p>
       </div>
 
       <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">

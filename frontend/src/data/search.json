@@ -20,10 +20,7 @@
         "pageId": "STAGING-RUNBOOK"
       }
     ],
-    "related": [
-      "How do we rollback a deployment?",
-      "How do we run database migrations?"
-    ],
+    "related": ["How do we rollback a deployment?", "How do we run database migrations?"],
     "date": "2025-08-17T10:05:00Z",
     "topics": ["deployment", "CI/CD", "AWS"],
     "sourceTypes": ["GitHub", "Confluence"]
@@ -50,10 +47,7 @@
         "authorId": "P008"
       }
     ],
-    "related": [
-      "How do we handle PII data?",
-      "How do we run database migrations?"
-    ],
+    "related": ["How do we handle PII data?", "How do we run database migrations?"],
     "date": "2025-09-14T14:25:00Z",
     "topics": ["database", "security", "process"],
     "sourceTypes": ["Confluence", "Slack"]
@@ -72,10 +66,7 @@
         "pageId": "git-workflow"
       }
     ],
-    "related": [
-      "How do we tag a release?",
-      "How do we rollback a deployment?"
-    ],
+    "related": ["How do we tag a release?", "How do we rollback a deployment?"],
     "date": "2025-05-09T09:12:00Z",
     "topics": ["process", "CI/CD"],
     "sourceTypes": ["Notion"]
@@ -94,10 +85,7 @@
         "repo": "org/repo"
       }
     ],
-    "related": [
-      "How do we deploy to staging?",
-      "How do we set up a dev container?"
-    ],
+    "related": ["How do we deploy to staging?", "How do we set up a dev container?"],
     "date": "2025-07-29T07:06:00Z",
     "topics": ["process", "CI/CD", "DevOps"],
     "sourceTypes": ["GitHub"]
@@ -116,10 +104,7 @@
         "pageId": "OBS-LOGS"
       }
     ],
-    "related": [
-      "How do we add monitoring alerts?",
-      "How do we deploy to staging?"
-    ],
+    "related": ["How do we add monitoring alerts?", "How do we deploy to staging?"],
     "date": "2025-08-03T10:44:00Z",
     "topics": ["observability", "AWS"],
     "sourceTypes": ["Confluence"]
@@ -138,10 +123,7 @@
         "pageId": "secrets-config"
       }
     ],
-    "related": [
-      "How do we deploy to staging?",
-      "How do we handle PII data?"
-    ],
+    "related": ["How do we deploy to staging?", "How do we handle PII data?"],
     "date": "2025-07-01T13:25:00Z",
     "topics": ["security", "DevOps"],
     "sourceTypes": ["Notion"]
@@ -161,10 +143,7 @@
         "authorId": "P005"
       }
     ],
-    "related": [
-      "How do we tag a release?",
-      "What is our branching strategy?"
-    ],
+    "related": ["How do we tag a release?", "What is our branching strategy?"],
     "date": "2025-08-10T15:03:00Z",
     "topics": ["process"],
     "sourceTypes": ["Notion"]
@@ -191,10 +170,7 @@
         "authorId": "P012"
       }
     ],
-    "related": [
-      "How do we handle PII data?",
-      "How do we add monitoring alerts?"
-    ],
+    "related": ["How do we handle PII data?", "How do we add monitoring alerts?"],
     "date": "2025-08-22T16:42:00Z",
     "topics": ["security", "process"],
     "sourceTypes": ["GitHub", "Slack"]
@@ -213,10 +189,7 @@
         "pageId": "AWS-SSO"
       }
     ],
-    "related": [
-      "How do we access staging logs?",
-      "How do I add a new environment variable?"
-    ],
+    "related": ["How do we access staging logs?", "How do I add a new environment variable?"],
     "date": "2025-07-14T08:30:00Z",
     "topics": ["AWS", "DevOps"],
     "sourceTypes": ["Confluence"]
@@ -236,10 +209,7 @@
         "authorId": "P009"
       }
     ],
-    "related": [
-      "How do we set up a dev container?",
-      "How do I request access to the GitHub org?"
-    ],
+    "related": ["How do we set up a dev container?", "How do I request access to the GitHub org?"],
     "date": "2025-05-01T09:05:00Z",
     "topics": ["onboarding", "process"],
     "sourceTypes": ["Notion"]
@@ -258,10 +228,7 @@
         "repo": "org/repo"
       }
     ],
-    "related": [
-      "How do we deploy to staging?",
-      "What is our branching strategy?"
-    ],
+    "related": ["How do we deploy to staging?", "What is our branching strategy?"],
     "date": "2025-06-11T10:12:00Z",
     "topics": ["CI/CD"],
     "sourceTypes": ["GitHub"]
@@ -280,10 +247,7 @@
         "pageId": "FEATURE-FLAGS"
       }
     ],
-    "related": [
-      "How do we rollback a deployment?",
-      "How do we tag a release?"
-    ],
+    "related": ["How do we rollback a deployment?", "How do we tag a release?"],
     "date": "2025-08-20T12:10:00Z",
     "topics": ["process", "React"],
     "sourceTypes": ["Confluence"]
@@ -309,10 +273,7 @@
         "pageId": "INCIDENT-RESPONSE"
       }
     ],
-    "related": [
-      "How do we tag a release?",
-      "How do we deploy to staging?"
-    ],
+    "related": ["How do we tag a release?", "How do we deploy to staging?"],
     "date": "2025-09-01T11:35:00Z",
     "topics": ["deployment", "CI/CD"],
     "sourceTypes": ["GitHub", "Confluence"]
@@ -353,10 +314,7 @@
         "repo": "org/repo"
       }
     ],
-    "related": [
-      "How do we deploy to staging?",
-      "How do we rollback a deployment?"
-    ],
+    "related": ["How do we deploy to staging?", "How do we rollback a deployment?"],
     "date": "2025-05-18T08:42:00Z",
     "topics": ["database", "deployment"],
     "sourceTypes": ["GitHub"]
@@ -398,10 +356,7 @@
         "pageId": "INCIDENT-POLICY"
       }
     ],
-    "related": [
-      "How do we rollback a deployment?",
-      "How do we add monitoring alerts?"
-    ],
+    "related": ["How do we rollback a deployment?", "How do we add monitoring alerts?"],
     "date": "2025-08-26T12:03:00Z",
     "topics": ["process", "observability"],
     "sourceTypes": ["Confluence"]
@@ -420,10 +375,7 @@
         "repo": "org/repo"
       }
     ],
-    "related": [
-      "How do we tag a release?",
-      "What is our branching strategy?"
-    ],
+    "related": ["How do we tag a release?", "What is our branching strategy?"],
     "date": "2025-07-07T14:05:00Z",
     "topics": ["process", "TypeScript"],
     "sourceTypes": ["GitHub"]
@@ -464,10 +416,7 @@
         "repo": "org/repo"
       }
     ],
-    "related": [
-      "How do I run tests locally?",
-      "How do we tag a release?"
-    ],
+    "related": ["How do I run tests locally?", "How do we tag a release?"],
     "date": "2025-08-02T12:04:00Z",
     "topics": ["React", "process"],
     "sourceTypes": ["GitHub"]
@@ -486,10 +435,7 @@
         "pageId": "SERVICE-TEMPLATE"
       }
     ],
-    "related": [
-      "How do we add monitoring alerts?",
-      "How do we deploy to staging?"
-    ],
+    "related": ["How do we add monitoring alerts?", "How do we deploy to staging?"],
     "date": "2025-09-15T09:05:00Z",
     "topics": ["infrastructure", "deployment"],
     "sourceTypes": ["Confluence"]
@@ -508,10 +454,7 @@
         "repo": "org/repo"
       }
     ],
-    "related": [
-      "What is our branching strategy?",
-      "How do we publish an internal NPM package?"
-    ],
+    "related": ["What is our branching strategy?", "How do we publish an internal NPM package?"],
     "date": "2025-07-20T10:02:00Z",
     "topics": ["CI/CD", "process"],
     "sourceTypes": ["GitHub"]
@@ -530,10 +473,7 @@
         "repo": "org/repo"
       }
     ],
-    "related": [
-      "What is our incident severity policy?",
-      "How do we access staging logs?"
-    ],
+    "related": ["What is our incident severity policy?", "How do we access staging logs?"],
     "date": "2025-08-30T08:05:00Z",
     "topics": ["observability", "AWS"],
     "sourceTypes": ["GitHub"]

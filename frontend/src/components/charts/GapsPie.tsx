@@ -11,7 +11,7 @@ export default function GapsPie({ data }: { data: PieSlice[] }) {
 
   const chartData = React.useMemo(
     () => data.map((d) => ({ name: d.label, value: d.value })),
-    [data]
+    [data],
   );
 
   const tooltipStyle: React.CSSProperties = {
@@ -33,7 +33,9 @@ export default function GapsPie({ data }: { data: PieSlice[] }) {
 
   return (
     <div className="h-72 w-full card card-padding text-slate-600 dark:text-slate-400">
-      <p className="px-1 pb-2 text-sm font-medium text-slate-700 dark:text-slate-300">Knowledge Gaps</p>
+      <p className="px-1 pb-2 text-sm font-medium text-slate-700 dark:text-slate-300">
+        Knowledge Gaps
+      </p>
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie data={chartData} dataKey="value" nameKey="name" outerRadius={90} label>

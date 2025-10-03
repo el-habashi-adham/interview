@@ -11,7 +11,7 @@ describe('MetricCard', () => {
 
   test('renders optional subtitle when provided and hides when not', () => {
     const { rerender } = render(
-      <MetricCard title="Total Docs" value={123} subtitle="since last week" />
+      <MetricCard title="Total Docs" value={123} subtitle="since last week" />,
     );
     expect(screen.getByText('since last week')).toBeInTheDocument();
 
@@ -25,7 +25,7 @@ describe('MetricCard', () => {
         title="Questions Answered"
         value="98"
         icon={<svg role="img" aria-label="icon" data-testid="icon" />}
-      />
+      />,
     );
     expect(screen.getByTestId('icon')).toBeInTheDocument();
   });

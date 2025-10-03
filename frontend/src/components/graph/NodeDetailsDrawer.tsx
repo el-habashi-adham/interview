@@ -15,6 +15,10 @@ export default function NodeDetailsDrawer({ node, onClose }: Props) {
       ? Object.entries(node.meta as Record<string, unknown>)
       : [];
 
+  // Safely extract url from meta without using any
+  const meta = (node.meta ?? {}) as Record<string, unknown>;
+  const url = typeof meta.url === 'string' ? (meta.url as string) : undefined;
+
   return (
     <div
       className="fixed inset-0 z-40 flex justify-end bg-slate-900/40"
@@ -28,12 +32,8 @@ export default function NodeDetailsDrawer({ node, onClose }: Props) {
       >
         <header className="flex items-center justify-between border-b border-slate-200 px-4 py-3">
           <div>
-            <p className="text-xs uppercase tracking-wide text-slate-500">
-              {node.type}
-            </p>
-            <h3 className="text-lg font-semibold text-slate-900">
-              {node.label}
-            </h3>
+            <p className="text-xs uppercase tracking-wide text-slate-500">{node.type}</p>
+            <h3 className="text-lg font-semibold text-slate-900">{node.label}</h3>
           </div>
           <button
             onClick={onClose}
@@ -53,22 +53,18 @@ export default function NodeDetailsDrawer({ node, onClose }: Props) {
               <dl className="mt-2 space-y-2">
                 {metaEntries.map(([k, v]) => (
                   <div key={k} className="grid grid-cols-3 gap-2">
-                    <dt className="text-xs font-medium text-slate-500">
-                      {k}
-                    </dt>
-                    <dd className="col-span-2 break-words text-sm text-slate-800">
-                      {String(v)}
-                    </dd>
+                    <dt className="text-xs font-medium text-slate-500">{k}</dt>
+                    <dd className="col-span-2 break-words text-sm text-slate-800">{String(v)}</dd>
                   </div>
                 ))}
               </dl>
             </div>
           )}
 
-          {node.type === 'document' && (node.meta as any)?.url ? (
+          {node.type === 'document' && url ? (
             <a
               className="inline-flex items-center gap-1 rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 hover:bg-slate-50"
-              href={String((node.meta as any).url)}
+              href={url}
               target="_blank"
               rel="noreferrer"
             >

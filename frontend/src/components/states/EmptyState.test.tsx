@@ -23,7 +23,8 @@ describe('EmptyState component', () => {
   });
 
   it('handles long messages', () => {
-    const longMessage = 'This is a very long message that should still render correctly without breaking the layout or causing any issues';
+    const longMessage =
+      'This is a very long message that should still render correctly without breaking the layout or causing any issues';
     render(<EmptyState message={longMessage} />);
     expect(screen.getByText(longMessage)).toBeInTheDocument();
   });

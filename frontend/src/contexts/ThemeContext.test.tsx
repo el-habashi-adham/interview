@@ -25,7 +25,7 @@ describe('ThemeContext', () => {
     render(
       <ThemeProvider>
         <Consumer />
-      </ThemeProvider>
+      </ThemeProvider>,
     );
 
     // theme value available to consumers
@@ -42,7 +42,7 @@ describe('ThemeContext', () => {
     render(
       <ThemeProvider>
         <Consumer />
-      </ThemeProvider>
+      </ThemeProvider>,
     );
 
     // default from setupTests matchMedia mock is light

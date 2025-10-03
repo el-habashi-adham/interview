@@ -19,7 +19,7 @@ function renderDashboard() {
   return render(
     <ThemeProvider>
       <Dashboard />
-    </ThemeProvider>
+    </ThemeProvider>,
   );
 }
 
@@ -55,12 +55,10 @@ describe('Dashboard page', () => {
   };
 
   it('shows loading state initially', () => {
-    vi.mocked(mockApi.fetchDashboard).mockImplementation(
-      () => new Promise(() => {})
-    );
+    vi.mocked(mockApi.fetchDashboard).mockImplementation(() => new Promise(() => {}));
 
     renderDashboard();
-    
+
     // Should show loading skeletons
     const loadingElements = screen.getAllByRole('status');
     expect(loadingElements.length).toBeGreaterThan(0);
@@ -96,9 +94,7 @@ describe('Dashboard page', () => {
   });
 
   it('shows error state on API failure', async () => {
-    vi.mocked(mockApi.fetchDashboard).mockRejectedValue(
-      new Error('API error')
-    );
+    vi.mocked(mockApi.fetchDashboard).mockRejectedValue(new Error('API error'));
 
     renderDashboard();
 

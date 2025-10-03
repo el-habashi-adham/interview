@@ -4,9 +4,11 @@ import { useAsync } from './useAsync';
 
 describe('useAsync', () => {
   it('initializes loading and resolves data', async () => {
-    const { result } = renderHook(() => useAsync(async () => {
-      return 'ok';
-    }, []));
+    const { result } = renderHook(() =>
+      useAsync(async () => {
+        return 'ok';
+      }, []),
+    );
 
     expect(result.current.loading).toBe(true);
     expect(result.current.data).toBeNull();
@@ -21,9 +23,11 @@ describe('useAsync', () => {
   });
 
   it('captures errors and sets error message', async () => {
-    const { result } = renderHook(() => useAsync(async () => {
-      throw new Error('boom');
-    }, []));
+    const { result } = renderHook(() =>
+      useAsync(async () => {
+        throw new Error('boom');
+      }, []),
+    );
 
     expect(result.current.loading).toBe(true);
 

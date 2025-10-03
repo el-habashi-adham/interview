@@ -9,7 +9,7 @@ describe('ThemeToggle', () => {
     render(
       <ThemeProvider>
         <ThemeToggle />
-      </ThemeProvider>
+      </ThemeProvider>,
     );
 
   test('renders toggle button with correct initial state (light)', () => {

@@ -19,7 +19,7 @@ function renderSearch() {
   return render(
     <BrowserRouter>
       <Search />
-    </BrowserRouter>
+    </BrowserRouter>,
   );
 }
 
@@ -56,7 +56,7 @@ describe('Search page', () => {
 
   it('renders search form', () => {
     renderSearch();
-    
+
     expect(screen.getByPlaceholderText(/ask a question/i)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /search/i })).toBeInTheDocument();
   });
@@ -82,7 +82,7 @@ describe('Search page', () => {
     await waitFor(() => {
       expect(mockApi.fetchSearchResults).toHaveBeenCalledWith(
         'deploy',
-        expect.objectContaining({ source: undefined })
+        expect.objectContaining({ source: undefined }),
       );
     });
   });
@@ -144,7 +144,7 @@ describe('Search page', () => {
 
     const sourceSelect = screen.getByLabelText(/source filter/i);
     await userEvent.selectOptions(sourceSelect, 'GitHub');
-    
+
     const input = screen.getByPlaceholderText(/ask a question/i);
     await userEvent.clear(input);
     await userEvent.type(input, 'test');
@@ -200,9 +200,7 @@ describe('Search page', () => {
   });
 
   it('handles API errors gracefully', async () => {
-    vi.mocked(mockApi.fetchSearchResults).mockRejectedValue(
-      new Error('Network error')
-    );
+    vi.mocked(mockApi.fetchSearchResults).mockRejectedValue(new Error('Network error'));
 
     renderSearch();
 

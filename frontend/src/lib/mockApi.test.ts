@@ -1,6 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { fetchSearchResults, textSearch, paginate } from './mockApi';
-import type { SearchQA } from '../types';
 
 // Mock Math.random to prevent random test failures from simulated network errors
 const originalRandom = Math.random;
@@ -14,12 +13,17 @@ vi.mock('../data/search.json', () => ({
       answer: 'Push to main branch triggers staging deploy',
       confidence: 0.93,
       citations: [
-        { source: 'GitHub', title: 'Deploy pipeline', url: 'https://example.com', date: '2025-08-17T10:03:22Z' }
+        {
+          source: 'GitHub',
+          title: 'Deploy pipeline',
+          url: 'https://example.com',
+          date: '2025-08-17T10:03:22Z',
+        },
       ],
       related: ['How do we rollback?'],
       date: '2025-08-17T10:05:00Z',
       topics: ['deployment', 'CI/CD'],
-      sourceTypes: ['GitHub', 'Confluence']
+      sourceTypes: ['GitHub', 'Confluence'],
     },
     {
       id: 'Q002',
@@ -27,12 +31,17 @@ vi.mock('../data/search.json', () => ({
       answer: 'Automated daily via RDS snapshots',
       confidence: 0.88,
       citations: [
-        { source: 'Confluence', title: 'RDS Backups', url: 'https://example.com', date: '2025-06-22T12:40:00Z' }
+        {
+          source: 'Confluence',
+          title: 'RDS Backups',
+          url: 'https://example.com',
+          date: '2025-06-22T12:40:00Z',
+        },
       ],
       related: [],
       date: '2025-09-14T14:25:00Z',
       topics: ['database', 'security'],
-      sourceTypes: ['Confluence', 'Slack']
+      sourceTypes: ['Confluence', 'Slack'],
     },
     {
       id: 'Q003',
@@ -40,14 +49,19 @@ vi.mock('../data/search.json', () => ({
       answer: 'Trunk-based development with feature branches',
       confidence: 0.9,
       citations: [
-        { source: 'Notion', title: 'Git Workflow', url: 'https://example.com', date: '2025-05-09T09:10:00Z' }
+        {
+          source: 'Notion',
+          title: 'Git Workflow',
+          url: 'https://example.com',
+          date: '2025-05-09T09:10:00Z',
+        },
       ],
       related: [],
       date: '2025-05-09T09:12:00Z',
       topics: ['process', 'CI/CD'],
-      sourceTypes: ['Notion']
-    }
-  ]
+      sourceTypes: ['Notion'],
+    },
+  ],
 }));
 
 describe('mockApi - fetchSearchResults', () => {
@@ -70,11 +84,12 @@ describe('mockApi - fetchSearchResults', () => {
   it('performs fuzzy search with query', async () => {
     const result = await fetchSearchResults('deploy');
     expect(result.data.length).toBeGreaterThan(0);
-    
+
     // Should find "deploy" matches
     const hasDeployMatch = result.data.some(
-      item => item.question.toLowerCase().includes('deploy') || 
-              item.answer.toLowerCase().includes('deploy')
+      (item) =>
+        item.question.toLowerCase().includes('deploy') ||
+        item.answer.toLowerCase().includes('deploy'),
     );
     expect(hasDeployMatch).toBe(true);
   });
@@ -82,21 +97,19 @@ describe('mockApi - fetchSearchResults', () => {
   it('handles typos with fuzzy matching', async () => {
     const result = await fetchSearchResults('deploymen'); // missing 't'
     expect(result.data.length).toBeGreaterThan(0);
-    
+
     // Should still find deployment-related content
-    const hasMatch = result.data.some(
-      item => item.topics.includes('deployment')
-    );
+    const hasMatch = result.data.some((item) => item.topics.includes('deployment'));
     expect(hasMatch).toBe(true);
   });
 
   it('filters by source type', async () => {
     const result = await fetchSearchResults('', { source: 'GitHub' });
-    
+
     // All results should include GitHub in sourceTypes or citations
-    result.data.forEach(item => {
-      const hasGitHub = item.sourceTypes.includes('GitHub') ||
-                       item.citations.some(c => c.source === 'GitHub');
+    result.data.forEach((item) => {
+      const hasGitHub =
+        item.sourceTypes.includes('GitHub') || item.citations.some((c) => c.source === 'GitHub');
       expect(hasGitHub).toBe(true);
     });
   });
@@ -104,10 +117,10 @@ describe('mockApi - fetchSearchResults', () => {
   it('filters by date range', async () => {
     const result = await fetchSearchResults('', {
       startDate: '2025-08-01',
-      endDate: '2025-09-30'
+      endDate: '2025-09-30',
     });
 
-    result.data.forEach(item => {
+    result.data.forEach((item) => {
       const date = new Date(item.date).getTime();
       const start = new Date('2025-08-01').getTime();
       const end = new Date('2025-09-30T23:59:59').getTime();
@@ -118,11 +131,12 @@ describe('mockApi - fetchSearchResults', () => {
 
   it('combines fuzzy search with filters', async () => {
     const result = await fetchSearchResults('backup', { source: 'Confluence' });
-    
+
     if (result.data.length > 0) {
-      result.data.forEach(item => {
-        const hasConfluence = item.sourceTypes.includes('Confluence') ||
-                             item.citations.some(c => c.source === 'Confluence');
+      result.data.forEach((item) => {
+        const hasConfluence =
+          item.sourceTypes.includes('Confluence') ||
+          item.citations.some((c) => c.source === 'Confluence');
         expect(hasConfluence).toBe(true);
       });
     }
@@ -130,10 +144,10 @@ describe('mockApi - fetchSearchResults', () => {
 
   it('overrides confidence scores when query is present', async () => {
     const result = await fetchSearchResults('deploy');
-    
+
     if (result.data.length > 0) {
       // Confidence should be within the clamped range for fuzzy results
-      result.data.forEach(item => {
+      result.data.forEach((item) => {
         expect(item.confidence).toBeGreaterThanOrEqual(0.6);
         expect(item.confidence).toBeLessThanOrEqual(0.99);
       });
@@ -142,7 +156,7 @@ describe('mockApi - fetchSearchResults', () => {
 
   it('sorts results by confidence descending', async () => {
     const result = await fetchSearchResults('deploy');
-    
+
     if (result.data.length > 1) {
       for (let i = 0; i < result.data.length - 1; i++) {
         expect(result.data[i].confidence).toBeGreaterThanOrEqual(result.data[i + 1].confidence);
@@ -155,7 +169,7 @@ describe('textSearch helper', () => {
   const items = [
     { id: 1, name: 'React Tutorial' },
     { id: 2, name: 'Vue Guide' },
-    { id: 3, name: 'React Patterns' }
+    { id: 3, name: 'React Patterns' },
   ];
 
   it('returns all items when query is empty', () => {
@@ -166,7 +180,7 @@ describe('textSearch helper', () => {
   it('filters items by query', () => {
     const result = textSearch(items, 'React', (item) => item.name);
     expect(result).toHaveLength(2);
-    expect(result.every(item => item.name.includes('React'))).toBe(true);
+    expect(result.every((item) => item.name.includes('React'))).toBe(true);
   });
 
   it('is case insensitive', () => {

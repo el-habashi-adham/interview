@@ -17,24 +17,15 @@ function Home() {
       </p>
 
       <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <Link
-          className="card p-6 hover:shadow-lg transition"
-          to="/dashboard"
-        >
+        <Link className="card p-6 hover:shadow-lg transition" to="/dashboard">
           <h2 className="font-semibold text-slate-900 dark:text-slate-100">Dashboard</h2>
           <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">Metrics and charts</p>
         </Link>
-        <Link
-          className="card p-6 hover:shadow-lg transition"
-          to="/search"
-        >
+        <Link className="card p-6 hover:shadow-lg transition" to="/search">
           <h2 className="font-semibold text-slate-900 dark:text-slate-100">Smart Search</h2>
           <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">Q&A style search</p>
         </Link>
-        <Link
-          className="card p-6 hover:shadow-lg transition"
-          to="/graph"
-        >
+        <Link className="card p-6 hover:shadow-lg transition" to="/graph">
           <h2 className="font-semibold text-slate-900 dark:text-slate-100">Knowledge Graph</h2>
           <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">Interactive network</p>
         </Link>

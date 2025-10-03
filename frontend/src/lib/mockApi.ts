@@ -42,11 +42,14 @@ export async function fetchDashboard(): Promise<ApiResponse<DashboardData>> {
 /**
  * Search API - searches across documentation sources
  */
-export async function fetchSearchResults(query: string, filters?: {
-  source?: SourceType;
-  startDate?: string;
-  endDate?: string;
-}): Promise<ApiResponse<SearchQA[]>> {
+export async function fetchSearchResults(
+  query: string,
+  filters?: {
+    source?: SourceType;
+    startDate?: string;
+    endDate?: string;
+  },
+): Promise<ApiResponse<SearchQA[]>> {
   const data = await import('../data/search.json');
   const results = data.default as SearchQA[];
 
@@ -56,9 +59,8 @@ export async function fetchSearchResults(query: string, filters?: {
   // Source filter first (limits search space)
   if (filters?.source) {
     const src = filters.source as SourceType;
-    filtered = filtered.filter((item) =>
-      item.sourceTypes.includes(src) ||
-      item.citations.some((c) => c.source === src)
+    filtered = filtered.filter(
+      (item) => item.sourceTypes.includes(src) || item.citations.some((c) => c.source === src),
     );
   }
 
@@ -104,11 +106,13 @@ export async function fetchSearchResults(query: string, filters?: {
     };
 
     payload = fuseResults
-      .map(({ item, score }: FuseResult<SearchQA>): SearchQA => ({
-        ...item,
-        // Only override confidence for active query; preserves mock values otherwise
-        confidence: toConfidence(score, item.confidence),
-      }))
+      .map(
+        ({ item, score }: FuseResult<SearchQA>): SearchQA => ({
+          ...item,
+          // Only override confidence for active query; preserves mock values otherwise
+          confidence: toConfidence(score, item.confidence),
+        }),
+      )
       // Fuse sorts by ascending score; ensure descending confidence for readability
       .sort((a: SearchQA, b: SearchQA) => b.confidence - a.confidence);
   } else {
@@ -121,7 +125,9 @@ export async function fetchSearchResults(query: string, filters?: {
 /**
  * Graph API - fetches knowledge graph nodes and edges
  */
-export async function fetchGraph(): Promise<ApiResponse<{ nodes: GraphNode[]; edges: GraphEdge[] }>> {
+export async function fetchGraph(): Promise<
+  ApiResponse<{ nodes: GraphNode[]; edges: GraphEdge[] }>
+> {
   const data = await import('../data/graph.json');
   return mockFetch('/graph', data.default as { nodes: GraphNode[]; edges: GraphEdge[] });
 }

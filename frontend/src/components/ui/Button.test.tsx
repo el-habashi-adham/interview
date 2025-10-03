@@ -11,9 +11,9 @@ describe('Button component', () => {
 
   it('handles click events', async () => {
     const handleClick = vi.fn();
-    
+
     render(<Button onClick={handleClick}>Click</Button>);
-    
+
     const button = screen.getByText('Click');
     await userEvent.click(button);
     expect(handleClick).toHaveBeenCalledTimes(1);
@@ -36,9 +36,9 @@ describe('Button component', () => {
     render(
       <Button disabled onClick={handleClick}>
         Disabled
-      </Button>
+      </Button>,
     );
-    
+
     const button = screen.getByText('Disabled');
     expect(button).toBeDisabled();
   });
@@ -60,7 +60,7 @@ describe('Button component', () => {
       <Button>
         <span>Icon</span>
         <span>Text</span>
-      </Button>
+      </Button>,
     );
     expect(screen.getByText('Icon')).toBeInTheDocument();
     expect(screen.getByText('Text')).toBeInTheDocument();

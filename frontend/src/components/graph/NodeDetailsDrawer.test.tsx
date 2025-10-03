@@ -60,7 +60,11 @@ describe('NodeDetailsDrawer', () => {
     expect(link).toHaveAttribute('href', 'https://example.com/a');
 
     // non-document - no link
-    const topicNode = makeNode({ type: 'topic', label: 'Topic X', meta: { url: 'https://example.com/x' } });
+    const topicNode = makeNode({
+      type: 'topic',
+      label: 'Topic X',
+      meta: { url: 'https://example.com/x' },
+    });
     rerender(<NodeDetailsDrawer node={topicNode} onClose={() => {}} />);
     expect(screen.queryByRole('link', { name: /open source/i })).toBeNull();
 
